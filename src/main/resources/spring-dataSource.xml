@@ -20,7 +20,7 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.baturu.tkDemo"/>
+    <context:component-scan base-package="com.baturu"/>
 
     <!-- 事务管理器 -->
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -58,6 +58,9 @@
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="com.baturu.tkDemo.mapper"/>
+		<property name="properties">
+	        <value>style=normal</value>
+	    </property>        
     </bean>
 
     <!-- 创建SqlSessionFactory，同时指定数据源 -->

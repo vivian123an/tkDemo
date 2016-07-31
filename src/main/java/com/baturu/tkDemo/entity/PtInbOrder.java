@@ -2,7 +2,6 @@ package com.baturu.tkDemo.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -27,110 +26,92 @@ public class PtInbOrder {
     /**
      * 销售订单Id（qp_order主键）
      */
-	@Column(name="orderId")
     private Long orderId;
 
     /**
      * 销售订单编号
      */
-	@Column(name="orderNo")
     private String orderNo;
 
     /**
      * 供应商Id
      */
-	@Column(name="supplierId")
     private Integer supplierId;
 
     /**
      * 供应商订单id
      */
-	@Column(name="splyOrderId")
     private Long splyOrderId;
 
     /**
      * 客服定价id
      */
-	@Column(name="purchaseRefId")
     private Long purchaseRefId;
 
     /**
      * 采购单编号
      */
-	@Column(name="poNo")
     private String poNo;
 
     /**
      * 状态（100:待分配、200:待采购、300:已采购、400:已完成、900:已取消）
      * @see com.batulu.mobile.thirdPartyMerge.constants.PoStatus
      */
-	@Column(name="status")
     private Integer status;
 
     /**
      * 采购分配人
      */
-	@Column(name="distributeBy")
     private Integer distributeBy;
 
     /**
      * 采购分配时间
      */
-	@Column(name="distributeTime")
     private String distributeTime;
 
     /**
      * 采购人Id
      */
-	@Column(name="purchaseBy")
     private Integer purchaseBy;
 
     /**
      * 采购时间
      */
-	@Column(name="purchaseTime")
     private Date purchaseTime;
 
     /**
      * 取消人Id
      */
-	@Column(name="cancelBy")
     private Integer cancelBy;
 
     /**
      * 取消时间
      */
-	@Column(name="cancelTime")
     private Date cancelTime;
 
     /**
      * 作业类别（100:供应商打包、200:供应商不打包、300:自采）
      */
-	@Column(name="poType")
     private Integer poType;
 
     /**
      * 创建人Id
      */
-	@Column(name="createBy")
     private String createBy;
 
     /**
      * 创建时间
      */
-	@Column(name="createTime")
     private Date createTime;
 
     /**
      * 更新人Id
      */
-	@Column(name="updateBy")
     private String updateBy;
 
     /**
      * 最后更新时间
      */
-	@Column(name="updateTime")
     private Date updateTime;
 
 	public Integer getId() {
