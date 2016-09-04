@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baturu.tkDemo.entity.PtInbOrder;
-import com.baturu.tkDemo.mapper.PtInbOrderMapper;
+import com.baturu.tkDemo.mapper.PtInbOrderTkMapper;
 
 /**
  * 
@@ -22,7 +22,7 @@ import com.baturu.tkDemo.mapper.PtInbOrderMapper;
 public class TransactionDemoImpl implements TransactionDemoInterface{
 
 	@Autowired
-	private PtInbOrderMapper ptInbOrderMapper;
+	private PtInbOrderTkMapper ptInbOrderMapper;
 	
 	/**
 	 * 调用TransactionDemo接口方法

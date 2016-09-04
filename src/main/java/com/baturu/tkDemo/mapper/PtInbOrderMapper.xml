@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baturu.tkDemo.mapper.PtInbOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.baturu.tkDemo.entity.PtInbOrder" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="orderId" property="orderId" jdbcType="BIGINT" />
+    <result column="orderNo" property="orderNo" jdbcType="VARCHAR" />
+    <result column="supplierId" property="supplierId" jdbcType="BIGINT" />
+    <result column="purchaseRefId" property="purchaseRefId" jdbcType="BIGINT" />
+    <result column="splyOrderId" property="splyOrderId" jdbcType="BIGINT" />
+    <result column="poNo" property="poNo" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="distributeBy" property="distributeBy" jdbcType="BIGINT" />
+    <result column="distributeTime" property="distributeTime" jdbcType="TIMESTAMP" />
+    <result column="purchaseBy" property="purchaseBy" jdbcType="BIGINT" />
+    <result column="purchaseTime" property="purchaseTime" jdbcType="TIMESTAMP" />
+    <result column="cancelBy" property="cancelBy" jdbcType="BIGINT" />
+    <result column="cancelTime" property="cancelTime" jdbcType="TIMESTAMP" />
+    <result column="poType" property="poType" jdbcType="INTEGER" />
+    <result column="createBy" property="createBy" jdbcType="VARCHAR" />
+    <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="updateBy" property="updateBy" jdbcType="VARCHAR" />
+    <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id , orderId , orderNo , supplierId , 
+    purchaseRefId , splyOrderId , poNo , 
+    status , distributeBy , 
+    distributeTime , purchaseBy , purchaseTime , 
+    cancelBy , cancelTime , poType , createBy , 
+    createTime , updateBy , updateTime 
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" useCache="false" flushCache="true">
+    select 
+    <include refid="Base_Column_List" />
+    from pt_inb_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <insert id="save" parameterType="com.baturu.tkDemo.entity.PtInbOrder" 
+  	useGeneratedKeys="true" keyProperty="id"  keyColumn="id">
+    insert into pt_inb_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        orderId,
+      </if>
+      <if test="orderNo != null" >
+        orderNo,
+      </if>
+      <if test="supplierId != null" >
+        supplierId,
+      </if>
+      <if test="purchaseRefId != null" >
+        purchaseRefId,
+      </if>
+      <if test="splyOrderId != null" >
+        splyOrderId,
+      </if>
+      <if test="poNo != null" >
+        poNo,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="distributeBy != null" >
+        distributeBy,
+      </if>
+      <if test="distributeTime != null" >
+        distributeTime,
+      </if>
+      <if test="purchaseBy != null" >
+        purchaseBy,
+      </if>
+      <if test="purchaseTime != null" >
+        purchaseTime,
+      </if>
+      <if test="cancelBy != null" >
+        cancelBy,
+      </if>
+      <if test="cancelTime != null" >
+        cancelTime,
+      </if>
+      <if test="poType != null" >
+        poType,
+      </if>
+      <if test="createBy != null" >
+        createBy,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="updateBy != null" >
+        updateBy,
+      </if>
+      <if test="updateTime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseRefId != null" >
+        #{purchaseRefId,jdbcType=BIGINT},
+      </if>
+      <if test="splyOrderId != null" >
+        #{splyOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="poNo != null" >
+        #{poNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="distributeBy != null" >
+        #{distributeBy,jdbcType=BIGINT},
+      </if>
+      <if test="distributeTime != null" >
+        #{distributeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchaseBy != null" >
+        #{purchaseBy,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseTime != null" >
+        #{purchaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelBy != null" >
+        #{cancelBy,jdbcType=BIGINT},
+      </if>
+      <if test="cancelTime != null" >
+        #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poType != null" >
+        #{poType,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+	<selectKey keyProperty="id" resultType="_long" order="AFTER">  
+       SELECT LAST_INSERT_ID();  
+    </selectKey>    
+  </insert>
+  
+  <update id="update" parameterType="com.baturu.tkDemo.entity.PtInbOrder" >
+    update pt_inb_order
+    <set >
+      <if test="orderId != null" >
+        orderId = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        orderNo = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplierId = #{supplierId,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseRefId != null" >
+        purchaseRefId = #{purchaseRefId,jdbcType=BIGINT},
+      </if>
+      <if test="splyOrderId != null" >
+        splyOrderId = #{splyOrderId,jdbcType=BIGINT},
+      </if>
+      <if test="poNo != null" >
+        poNo = #{poNo,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="distributeBy != null" >
+        distributeBy = #{distributeBy,jdbcType=BIGINT},
+      </if>
+      <if test="distributeTime != null" >
+        distributeTime = #{distributeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purchaseBy != null" >
+        purchaseBy = #{purchaseBy,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseTime != null" >
+        purchaseTime = #{purchaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cancelBy != null" >
+        cancelBy = #{cancelBy,jdbcType=BIGINT},
+      </if>
+      <if test="cancelTime != null" >
+        cancelTime = #{cancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="poType != null" >
+        poType = #{poType,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        createBy = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        updateBy = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+</mapper>

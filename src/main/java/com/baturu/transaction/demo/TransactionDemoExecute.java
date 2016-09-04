@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baturu.tkDemo.entity.PtInbOrder;
-import com.baturu.tkDemo.mapper.PtInbOrderMapper;
+import com.baturu.tkDemo.mapper.PtInbOrderTkMapper;
 
 /**
  * 
@@ -26,7 +26,7 @@ public class TransactionDemoExecute {
 	@Autowired
 	private TransactionPropagation transactionPropagation;
 	@Autowired
-	private PtInbOrderMapper ptInbOrderMapper;
+	private PtInbOrderTkMapper ptInbOrderMapper;
 	
 	/**
 	 * execute1方法没有开启事务注解

@@ -17,7 +17,7 @@ import com.google.common.collect.Lists;
 
 public class PtInbOrderMapperTest extends BaseServiceTest{
 	@Autowired
-	private PtInbOrderMapper ptInbOrderMapper;
+	private PtInbOrderTkMapper ptInbOrderMapper;
 	
 	/**
 	 * 根据单个Id查询
@@ -60,7 +60,6 @@ public class PtInbOrderMapperTest extends BaseServiceTest{
 	/**
 	 * 批量保存
 	 */
-	@Test
 	public void saveBatch(){
 		PtInbOrder entity1 = new PtInbOrder();
 		entity1.setOrderNo("O100002");
@@ -108,5 +107,12 @@ public class PtInbOrderMapperTest extends BaseServiceTest{
        
         System.out.println(JSON.toJSONString(ptInbOrderMapper.selectByExample(condition),true));
 	}
+	
+	@Test
+	public void joinTable(){
+		System.out.println(JSON.toJSONString(ptInbOrderMapper.findBySupplierName("阡陌"),true));
+	}
+	
+	
 	
 }

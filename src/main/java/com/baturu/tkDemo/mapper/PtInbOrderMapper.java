@@ -1,14 +1,20 @@
 package com.baturu.tkDemo.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.special.InsertListMapper;
-
+import com.baturu.tkDemo.base.BaseMapper;
 import com.baturu.tkDemo.entity.PtInbOrder;
 
 
 @Repository
-public interface PtInbOrderMapper extends Mapper<PtInbOrder>,InsertListMapper<PtInbOrder>{
+public interface PtInbOrderMapper extends BaseMapper<PtInbOrder>{
 
+	@Select(" select * from pt_inb_order where orderNo = #{orderNo} ")
+	@Options(useCache = false, flushCache = true, timeout = 10000)
+	List<PtInbOrder> findByOrderNo(@Param("orderNo")String orderNo);
 }

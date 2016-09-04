@@ -6,12 +6,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baturu.tkDemo.entity.PtInbOrder;
-import com.baturu.tkDemo.mapper.PtInbOrderMapper;
+import com.baturu.tkDemo.mapper.PtInbOrderTkMapper;
 
 @Service("transactionPropagation")
 public class TransactionPropagation {
 	@Autowired
-	private PtInbOrderMapper ptInbOrderMapper;
+	private PtInbOrderTkMapper ptInbOrderMapper;
 	
 	/**
 	 * Propagation.REQUIRED
