@@ -31,7 +31,7 @@ public class PtInbOrderJdbcService {
 	}
 	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRES_NEW)
-	public int updateTxNew(PtInbOrder entity){
+	public int updateStatusTxNew(PtInbOrder entity){
 		String sql = " update pt_inb_order set status = ? where id = ?  ";
 		return jdbcTemplate.update(sql, new Object[]{entity.getStatus(), entity.getId()});
 	}
@@ -42,9 +42,39 @@ public class PtInbOrderJdbcService {
 		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
 	}
 	
+	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRES_NEW)
+	public int increaseStatusTxNew(Long id){
+		String sql = " update pt_inb_order set status = status+100 where id = ?  ";
+		return jdbcTemplate.update(sql, new Object[]{id});
+	}
+	
+	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
+	public int increaseStatus(Long id){
+		String sql = " update pt_inb_order set status = status+100 where id = ?  ";
+		return jdbcTemplate.update(sql, new Object[]{id});
+	}
+	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
 	public List<PtInbOrder> findByOrderNo(String orderNo){
 		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ?  ";
+		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
+	}
+	
+	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
+	public List<PtInbOrder> findByOrderId(Long orderId){
+		String sql = " select id, orderNo, status, poNo from pt_inb_order where orderId = ?  ";
+		return jdbcTemplate.query(sql, new Object[]{orderId}, new PtInbOrderMapper());
+	}
+	
+	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
+	public List<PtInbOrder> findByOrderNoInShareMode(String orderNo){
+		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ? LOCK IN SHARE MODE ";
+		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
+	}
+	
+	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
+	public List<PtInbOrder> findByOrderNoForUpdate(String orderNo){
+		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ? for update ";
 		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
 	}
 	
@@ -60,6 +90,7 @@ public class PtInbOrderJdbcService {
 	    	entity.setId(rs.getLong("id"));
 	    	entity.setOrderNo(rs.getString("orderNo"));
 	    	entity.setStatus(rs.getInt("status"));
+	    	entity.setPoNo(rs.getString("poNo"));
 	        return entity;
 	    }
 	}
