@@ -30,7 +30,7 @@
     cancelBy , cancelTime , poType , createBy , 
     createTime , updateBy , updateTime 
   </sql>
-  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" useCache="false" flushCache="true">
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" useCache="false" flushCache="false">
     select 
     <include refid="Base_Column_List" />
     from pt_inb_order

@@ -3,7 +3,7 @@ package com.baturu.transaction.isolation;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.baturu.tkDemo.util.BaseServiceTest;
+import com.baturu.tkDemo.base.BaseServiceTest;
 
 /**
  * Repeatable Read Isolation Level in InnoDB - How Consistent Read View Works
@@ -35,38 +35,26 @@ public class IsolationTest extends BaseServiceTest{
 	 * 设置数据库隔离级别、读提交
 	 * 【SET GLOBAL tx_isolation = 'read-committed';】
 	 */
+	@Test
 	public void test1(){
-		isolationService.nonRepeatableRead();
+		isolationService.mybatisFlushCache();
 	}
-	
-	/**
-	 * 使用下面两种参数，分别执行该方法
-	 * 1.【SET GLOBAL tx_isolation = 'REPEATABLE-READ';】
-	 * 2.【SET GLOBAL tx_isolation = 'read-committed';】
-	 */
+
+	@Test
 	public void test2(){
+		isolationService.consistentRead();
+	}
+
+	@Test
+	public void test3(){
 		isolationService.readCommittedUpdate();
 	}
-	
-	/**
-	 * 使用下面两种参数，分别执行该方法
-	 * 1.【SET GLOBAL tx_isolation = 'REPEATABLE-READ';】
-	 * 2.【SET GLOBAL tx_isolation = 'read-committed';】
-	 */
-	public void test3(){
-		isolationService.phantomRead1();
-	}
-	
+
+
 	@Test
 	public void test4(){
-		isolationService.phantomRead2();
+		isolationService.phantomRead();
 	}
 	
-	/**
-	 * 设置数据库隔离级别、读提交
-	 * 【SET GLOBAL tx_isolation = 'read-committed';】
-	 */
-	public void test5(){
-		isolationService.nonRepeatableRead();
-	}
+
 }

@@ -38,7 +38,7 @@ public class PtInbOrderJdbcService {
 	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRES_NEW)
 	public List<PtInbOrder> queryTxNew(String orderNo){
-		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ?  ";
+		String sql = " select id, orderNo, status, poNO from pt_inb_order where orderNo = ?  ";
 		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
 	}
 	
@@ -68,19 +68,19 @@ public class PtInbOrderJdbcService {
 	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
 	public List<PtInbOrder> findByOrderNoInShareMode(String orderNo){
-		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ? LOCK IN SHARE MODE ";
+		String sql = " select id, orderNo, status, poNO from pt_inb_order where orderNo = ? LOCK IN SHARE MODE ";
 		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
 	}
 	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
 	public List<PtInbOrder> findByOrderNoForUpdate(String orderNo){
-		String sql = " select id, orderNo, status from pt_inb_order where orderNo = ? for update ";
+		String sql = " select id, orderNo, status,poNO from pt_inb_order where orderNo = ? for update ";
 		return jdbcTemplate.query(sql, new Object[]{orderNo}, new PtInbOrderMapper());
 	}
 	
 	@Transactional(readOnly = false, value = "txManager", propagation = Propagation.REQUIRED)
 	public PtInbOrder get(Long id){
-		String sql = " select id, orderNo, status from pt_inb_order where id = ?  ";
+		String sql = " select id, orderNo, status, poNO from pt_inb_order where id = ?  ";
 		return jdbcTemplate.query(sql, new Object[]{id}, new PtInbOrderMapper()).get(0);
 	}
 	

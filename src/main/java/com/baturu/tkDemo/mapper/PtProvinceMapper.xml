@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baturu.tkDemo.mapper.PtProvinceMapper" >
+  <resultMap id="BaseResultMap" type="com.baturu.tkDemo.entity.PtProvince" >
+    <id column="ProvinceID" property="provinceid" jdbcType="INTEGER" />
+    <result column="RegionID" property="regionid" jdbcType="INTEGER" />
+    <result column="ProvinceCode" property="provincecode" jdbcType="VARCHAR" />
+    <result column="ProvinceName" property="provincename" jdbcType="VARCHAR" />
+    <result column="QmskRegionID" property="qmskregionid" jdbcType="SMALLINT" />
+    <result column="hot" property="hot" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ProvinceID, RegionID, ProvinceCode, ProvinceName, QmskRegionID, hot
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from pt_province
+    where ProvinceID = #{provinceid,jdbcType=INTEGER}
+  </select>
+
+  <insert id="save" parameterType="com.baturu.tkDemo.entity.PtProvince" >
+    insert into pt_province
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="regionid != null" >
+        RegionID,
+      </if>
+      <if test="provincecode != null" >
+        ProvinceCode,
+      </if>
+      <if test="provincename != null" >
+        ProvinceName,
+      </if>
+      <if test="qmskregionid != null" >
+        QmskRegionID,
+      </if>
+      <if test="hot != null" >
+        hot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="regionid != null" >
+        #{regionid,jdbcType=INTEGER},
+      </if>
+      <if test="provincecode != null" >
+        #{provincecode,jdbcType=VARCHAR},
+      </if>
+      <if test="provincename != null" >
+        #{provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="qmskregionid != null" >
+        #{qmskregionid,jdbcType=SMALLINT},
+      </if>
+      <if test="hot != null" >
+        #{hot,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.baturu.tkDemo.entity.PtProvince" >
+    update pt_province
+    <set >
+      <if test="regionid != null" >
+        RegionID = #{regionid,jdbcType=INTEGER},
+      </if>
+      <if test="provincecode != null" >
+        ProvinceCode = #{provincecode,jdbcType=VARCHAR},
+      </if>
+      <if test="provincename != null" >
+        ProvinceName = #{provincename,jdbcType=VARCHAR},
+      </if>
+      <if test="qmskregionid != null" >
+        QmskRegionID = #{qmskregionid,jdbcType=SMALLINT},
+      </if>
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where ProvinceID = #{provinceid,jdbcType=INTEGER}
+  </update>
+
+</mapper>

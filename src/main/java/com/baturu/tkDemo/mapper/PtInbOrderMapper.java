@@ -15,6 +15,6 @@ import com.baturu.tkDemo.entity.PtInbOrder;
 public interface PtInbOrderMapper extends BaseMapper<PtInbOrder>{
 
 	@Select(" select * from pt_inb_order where orderNo = #{orderNo} ")
-	@Options(useCache = false, flushCache = true, timeout = 10000)
+	@Options(useCache = false, flushCache = false, timeout = 10000)
 	List<PtInbOrder> findByOrderNo(@Param("orderNo")String orderNo);
 }

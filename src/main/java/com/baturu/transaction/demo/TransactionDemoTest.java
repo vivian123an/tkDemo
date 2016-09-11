@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 
-import com.baturu.tkDemo.util.BaseServiceTest;
+import com.baturu.tkDemo.base.BaseServiceTest;
 
 /**
  * 
@@ -60,11 +60,12 @@ public class TransactionDemoTest extends BaseServiceTest{
     	transactionDemoExecute.execute1();
     }
     
-    @Test
+
 	public void test2(){
     	transactionDemoExecute.execute2();
 	}
-	
+
+	@Test
     public void test3(){
     	transactionDemoExecute.execute3();
     }
